@@ -824,10 +824,26 @@ array([[0.+ 0.j, 1.+0.j],
 
     <div class="doc doc-contents ">
 
-        <p>Implementa la función que realiza el método RK4.
-Exemples:
-    &gt;&gt;&gt; rk4(dyn_generator, oOper, yInit, h)</p>
+        <p>Implementa la función que realiza el método RK4.</p>
 
+
+<details class="exemple" open>
+  <summary>Exemple</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>def simple_dyn(oper, state):
+        return np.dot(oper, state)
+oOper = np.array([[0, 1], [1, 0]])
+yInit = np.array([[1, 0], [0, 1]])
+h = 0.01
+rk4(simple_dyn, oOper, yInit, h)
+array([[1.   , 0.01],
+        [0.01, 0 . ]])</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
 
 <p><span class="doc-section-title">Parameters:</span></p>
     <table>
@@ -921,10 +937,28 @@ Exemples:
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rk4</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rk4</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implementa la función que realiza el método RK4.</span>
-<span class="sd">    Exemples:</span>
-<span class="sd">        &gt;&gt;&gt; rk4(dyn_generator, oOper, yInit, h)</span>
+
+<span class="sd">    Exemple:</span>
+<span class="sd">        &gt;&gt;&gt; def simple_dyn(oper, state):</span>
+<span class="sd">                return np.dot(oper, state)</span>
+<span class="sd">        &gt;&gt;&gt; oOper = np.array([[0, 1], [1, 0]])</span>
+<span class="sd">        &gt;&gt;&gt; yInit = np.array([[1, 0], [0, 1]])</span>
+<span class="sd">        &gt;&gt;&gt; h = 0.01</span>
+<span class="sd">        &gt;&gt;&gt; rk4(simple_dyn, oOper, yInit, h)</span>
+<span class="sd">        array([[1.   , 0.01],</span>
+<span class="sd">                [0.01, 0 . ]])</span>
+
 
 <span class="sd">    Args:</span>
 <span class="sd">        func (function): función que representa la dinámica del problema</span>
