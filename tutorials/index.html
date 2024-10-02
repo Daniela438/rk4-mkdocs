@@ -758,7 +758,7 @@ Examples:
       </tbody>
     </table>
         <p>Returns:
-    matrix: matriz que representa el conmutador de dos operadores por el número cmplejo <code>1j</code>.</p>
+    (matrix): matriz que representa el conmutador de dos operadores por el número cmplejo <code>1j</code>.</p>
 
             <details class="quote">
               <summary>Source code in <code>dynamics/dynamics.py</code></summary>
@@ -784,7 +784,7 @@ Examples:
 <span class="sd">        oper (matrix): array bidimensional que modifica el estado y(t)</span>
 <span class="sd">        state (matrix): array bidimensional que representa el estado inicial alguna cantidad física.</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        matrix: matriz que representa el conmutador de dos operadores por el número cmplejo `1j`.</span>
+<span class="sd">        (matrix): matriz que representa el conmutador de dos operadores por el número cmplejo `1j`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">iConst</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">oper</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -805,13 +805,81 @@ Examples:
     <div class="doc doc-contents ">
 
         <p>Implementa la función que realiza el método RK4.
-Args:
-    func (function): función que representa la dinámica del problema
-    oper (matrix): operador que modifica el estado de y(t)
-    state (matrix): estado inicial
-    h (float): paso temporal
-Returns:
-    matrix: el nuevo estado del sistema despues de un paso temporal h.</p>
+Exemples:
+    &gt;&gt;&gt; rk4(dyn_generator, oOper, yInit, h)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>func</code></td>
+            <td>
+                  <code>function</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>función que representa la dinámica del problema</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>oper</code></td>
+            <td>
+                  <code>matrix</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>operador que modifica el estado de y(t)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>state</code></td>
+            <td>
+                  <code>matrix</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>estado inicial</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>h</code></td>
+            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>paso temporal</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Returns:
+    (matrix): el nuevo estado del sistema despues de un paso temporal h.</p>
 
             <details class="quote">
               <summary>Source code in <code>dynamics/dynamics.py</code></summary>
@@ -830,15 +898,21 @@ Returns:
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rk4</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rk4</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implementa la función que realiza el método RK4.</span>
+<span class="sd">    Exemples:</span>
+<span class="sd">        &gt;&gt;&gt; rk4(dyn_generator, oOper, yInit, h)</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        func (function): función que representa la dinámica del problema</span>
 <span class="sd">        oper (matrix): operador que modifica el estado de y(t)</span>
 <span class="sd">        state (matrix): estado inicial</span>
 <span class="sd">        h (float): paso temporal</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        matrix: el nuevo estado del sistema despues de un paso temporal h.</span>
+<span class="sd">        (matrix): el nuevo estado del sistema despues de un paso temporal h.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">func</span><span class="p">(</span><span class="n">oper</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
     <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">func</span><span class="p">(</span><span class="n">oper</span><span class="p">,</span> <span class="n">state</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
